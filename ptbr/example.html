@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IsaDB2 Docs</title>
+<meta name="apple-mobile-web-app-title" content="IsaDB2 Docs">
+<meta name="application-name" content="IsaDB2 Docs">
+<meta name="msapplication-TileColor" content="#f9f9f9">
+<meta name="theme-color" content="#f9f9f9"
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The new method of saving things - IsaDB2 is the precursor of IsaDB.">
+<meta property="og:image" content="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png">
+<meta property="og:title" content="IsaDB2"
+<meta property="og:description" content="The new method of saving things - IsaDB2 is the precursor of IsaDB.">
+<link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png" type="image/png">
+<link rel="shortcut icon" href="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png" type="image/png">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar {
+    background-color: #333;
+    overflow: hidden;
+  }
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #ddd;
+    color: black;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#">IsaDB2</a>
+  <div class="dropdown">
+    <button class="dropbtn">pt-BR
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Exemplo</a>
+      <a href="#">Iniciando</a>
+      <a href="#">Arquivo .isadb2</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">en-US
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Example</a>
+      <a href="#">Getting Started</a>
+      <a href="#">.isadb2 File</a>
+    </div>
+  </div>
+</div>
+
+<h1 id="-exemplo">📞 Exemplo</h1>
+<h3 id="iniciando">Iniciando</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> isadb = <span class="hljs-built_in">require</span>(<span class="hljs-string">'isadb2'</span>)
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">//função assíncrona para exemplo</span>
+    <span class="hljs-keyword">await</span> isadb.create() <span class="hljs-comment">//criando instância isaDB</span>
+
+    <span class="hljs-keyword">await</span> isadb.set(<span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>) <span class="hljs-comment">//setando propriedades</span>
+    isadb.get(<span class="hljs-string">'foo'</span>).then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(value) <span class="hljs-comment">//retornará -&gt; bar</span>
+    })
+}
+
+main()
+</code></pre>
+<h3 id="objetos">Objetos</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> isadb2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'isadb2'</span>)
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">await</span> isadb2.create() <span class="hljs-comment">//criando instância isaDB</span>
+
+    <span class="hljs-keyword">await</span> isadb2.set(<span class="hljs-string">'object'</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">'renato'</span>, <span class="hljs-attr">sobrenome</span>: <span class="hljs-string">'gouveia'</span>, <span class="hljs-attr">idade</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">'emaildorenato@email.com'</span>}) <span class="hljs-comment">//saving a object</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">await</span> isadb2.get(<span class="hljs-string">'object'</span>)) <span class="hljs-comment">//retorna o objeto completo / usando await</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">await</span> isadb2.get(<span class="hljs-string">'object.sobrenome'</span>)) <span class="hljs-comment">//retorna apenas a propriedade `sobrenome` / usando await</span>
+    isadb2.get(<span class="hljs-string">'object.name'</span>).then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(value) <span class="hljs-comment">//retorna apenas a propriedade `name` / usando o then</span>
+    })
+    isadb2.get(<span class="hljs-string">'object.idade'</span>).then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(value) <span class="hljs-comment">//retorna apenas a propriedade `idade` / usando then</span>
+    })
+}
+
+main()
+</code></pre>
+<h3 id="exemplo-de-arquivo-isadb2-">Exemplo de arquivo <code>.isadb2</code></h3>
+<pre><code class="lang-tsconfig">$objetoQualquer[Object({<span class="hljs-string">"nome"</span>: <span class="hljs-string">"legal"</span>})]
+$númeroQualquer[<span class="hljs-built_in">Number</span>(<span class="hljs-number">12</span>)]
+$arrayQualquer[Array(nome1, nome2, nome3, <span class="hljs-built_in">Number</span>(<span class="hljs-number">12</span>), Object({<span class="hljs-string">"produto"</span>: <span class="hljs-string">"xilito"</span>}))]
+$stringQualquer[legal]
+<span class="hljs-meta"># comentário qualquer</span>
+</code></pre>
+
+</body>
+</html>

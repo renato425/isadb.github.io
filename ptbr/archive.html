@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IsaDB2 Docs</title>
+<meta name="apple-mobile-web-app-title" content="IsaDB2 Docs">
+<meta name="application-name" content="IsaDB2 Docs">
+<meta name="msapplication-TileColor" content="#f9f9f9">
+<meta name="theme-color" content="#f9f9f9"
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The new method of saving things - IsaDB2 is the precursor of IsaDB.">
+<meta property="og:image" content="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png">
+<meta property="og:title" content="IsaDB2"
+<meta property="og:description" content="The new method of saving things - IsaDB2 is the precursor of IsaDB.">
+<link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png" type="image/png">
+<link rel="shortcut icon" href="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png" type="image/png">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar {
+    background-color: #333;
+    overflow: hidden;
+  }
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #ddd;
+    color: black;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#">IsaDB2</a>
+  <div class="dropdown">
+    <button class="dropbtn">pt-BR
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Exemplo</a>
+      <a href="#">Iniciando</a>
+      <a href="#">Arquivo .isadb2</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">en-US
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Example</a>
+      <a href="#">Getting Started</a>
+      <a href="#">.isadb2 File</a>
+    </div>
+  </div>
+</div>
+<h1 id="-arquivo-isadb2">🧠 Arquivo .isadb2</h1>
+<p>O uso e manuseio do <code>.isadb2</code> é bem simples e provavelmente você deve aprender apenas lendo essa documentação.</p>
+<h2 id="criando-linhas">Criando linhas</h2>
+<p>Para criar um novo conteúdo dentro do <code>.isadb2</code>, apenas coloque um <code>$</code> ao lado do nome e <code>[]</code> no conteúdo.</p>
+<p>Lembrando que esse nome <strong>NÃO</strong> pode ter espaços. Pode haver conflito caso tenha, mas no conteúdo, os espaços são permitidos.</p>
+<pre><code class="lang-tsconfig">$nome[conteú<span class="hljs-keyword">do</span> número <span class="hljs-number">1</span>]
+</code></pre>
+<h2 id="adicionando-coment-rios">Adicionando comentários</h2>
+<p>Para melhor comunicação interna. Você pode adicionar comentários no <code>.isadb2</code>, apenas adicione a <code>#</code> em vez do <code>$</code> e o seu comentário.</p>
+<pre><code class="lang-tsconfig">$nome[conteú<span class="hljs-keyword">do</span>]
+<span class="hljs-meta"># comentário 1</span>
+$outroValor[outro conteú<span class="hljs-keyword">do</span>]
+</code></pre>
+<h2 id="adicionando-linhas-especiais">Adicionando linhas especiais</h2>
+<p>Linhas especiais são necessárias para leitura do arquivo. Elas são separadas entre <code>JSON</code>, <code>Array</code> e <code>Number</code>, você PRECISARÁ colocar elas para uma melhor leitura do arquivo.</p>
+<ul>
+<li>JSON -&gt; Cria uma variável JSON dentro do <code>.isadb2</code>, usa JSON padrão</li>
+<li>Array -&gt; Cria um array dentro do <code>.isadb2</code>, não usa colchetes, use apenas a <code>,</code>. Dentro desse Array, você pode colocar Objetos, Números e mais outro Array.</li>
+<li>Number -&gt; Cria um número dentro do <code>.isadb2</code>, pode ser Inteiro ou o Inverso (Float)</li>
+</ul>
+<pre><code class="lang-tsconfig">$nome[conteú<span class="hljs-keyword">do</span>]
+# comentário <span class="hljs-number">1</span>
+$outroValor[outro conteú<span class="hljs-keyword">do</span>]
+$<span class="hljs-keyword">object</span>[<span class="hljs-keyword">JSON</span>({<span class="hljs-string">"nome"</span>: <span class="hljs-string">"Facundo"</span>, <span class="hljs-string">"sobrenome"</span>: <span class="hljs-string">"Rufino"</span>})]
+$<span class="hljs-built_in">array</span>[<span class="hljs-built_in">Array</span>(nome1, nome2, nome3, <span class="hljs-keyword">JSON</span>({<span class="hljs-string">"objeto"</span>: <span class="hljs-string">"dentro do array"</span>}), <span class="hljs-built_in">Number</span>(<span class="hljs-number">10</span>), <span class="hljs-built_in">Array</span>(uno, dos))]
+$<span class="hljs-built_in">number</span>[<span class="hljs-built_in">Number</span>(<span class="hljs-number">5</span>)]
+</code></pre>
+
+</body>
+</html>

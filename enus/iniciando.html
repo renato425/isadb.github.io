@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IsaDB2 Docs</title>
+<meta name="apple-mobile-web-app-title" content="IsaDB2 Docs">
+<meta name="application-name" content="IsaDB2 Docs">
+<meta name="msapplication-TileColor" content="#f9f9f9">
+<meta name="theme-color" content="#f9f9f9"
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The new method of saving things - IsaDB2 is the precursor of IsaDB.">
+<meta property="og:image" content="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png">
+<meta property="og:title" content="IsaDB2"
+<meta property="og:description" content="The new method of saving things - IsaDB2 is the precursor of IsaDB.">
+<link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png" type="image/png">
+<link rel="shortcut icon" href="https://images.emojiterra.com/google/android-12l/512px/1f3e6.png" type="image/png">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar {
+    background-color: #333;
+    overflow: hidden;
+  }
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #ddd;
+    color: black;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#">IsaDB2</a>
+  <div class="dropdown">
+    <button class="dropbtn">pt-BR
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Exemplo</a>
+      <a href="#">Iniciando</a>
+      <a href="#">Arquivo .isadb2</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">en-US
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Example</a>
+      <a href="#">Getting Started</a>
+      <a href="#">.isadb2 File</a>
+    </div>
+  </div>
+</div>
+<h1 id="-getting-started-">🐤 Getting Started...</h1>
+<h2 id="first-step">First Step</h2>
+<p>To get started with IsaDB2, first and foremost, you need to initialize (create an instance) to begin using it correctly.&#x20;</p>
+<p>The <code>IsaDB2</code> library primarily uses <strong>asynchronous</strong> functions for its projects, always returning <code>&lt;Promises&gt;</code>.</p>
+<p>I will also use <code>CommonJS</code>, but it's important to remember that <code>IsaDB2</code> supports <code>EcmaScript</code>.</p>
+<pre><code class="lang-javascript">const IsaDB2 = require('isadb2')
+
+<span class="hljs-comment">/*
+In this example, I will use FUNCTIONS to initiate all the steps
+*/</span>
+
+async <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> {</span> <span class="hljs-comment">//creating a function `main`</span>
+    await IsaDB2.create() <span class="hljs-comment">//creating the IsaDB2 instance</span>
+}
+
+main() <span class="hljs-comment">//executing the function</span>
+</code></pre>
+<h2 id="set-get">Set &amp; Get</h2>
+<p>In IsaDB2, the main focus is on handling local databases. In this case, <code>.set</code> and <code>.get</code> are the main references.</p>
+<pre><code class="lang-javascript">const IsaDB2 = require('isadb2')
+
+async <span class="hljs-keyword">function</span> <span class="hljs-title">main</span>() {
+    await IsaDB2.create()
+    await IsaDB2.set('foo', 'bar') //returns -&gt; true
+    await IsaDB2.set('object', {name: 'Lucas', surname: 'Gomes'}) //returns -&gt; true
+    //getting using method 1
+    console.log(await IsaDB2.get('foo')) //returns -&gt; bar
+    //getting using method 2
+    IsaDB2.get('object').<span class="hljs-keyword">then</span>(data =&gt; {
+        console.log(data) //returns -&gt; {name: 'Lucas', surname: 'Gomes'}
+    })
+}
+
+main()
+</code></pre>
+<h2 id="delete">Delete</h2>
+<p>If you want to delete data from the database, the <code>Delete</code> function can come to the rescue.</p>
+<pre><code class="lang-javascript">const IsaDB2 = require('isadb2')
+
+async <span class="hljs-keyword">function</span> <span class="hljs-title">main</span>() {
+    await IsaDB2.create()
+    await IsaDB2.set('foo', 'bar')
+    await IsaDB2.set('object', {name: 'Lucas', surname: 'Gomes'})
+    console.log(await IsaDB2.get('foo'))
+    IsaDB2.get('object').<span class="hljs-keyword">then</span>(data =&gt; {
+        console.log(data)
+    })
+    await IsaDB2.delete('foo') //returns -&gt; true
+    console.log(await IsaDB2.get('foo')) //returns -&gt; null
+}
+
+main()
+</code></pre>
+<h2 id="notation">Notation</h2>
+<p>IsaDB2 also works with notation within its strings to facilitate handling <strong>Objects</strong> within the database.</p>
+<pre><code class="lang-javascript">const IsaDB2 = require('isadb2')
+
+async <span class="hljs-keyword">function</span> <span class="hljs-title">main</span>() {
+    await IsaDB2.create()
+    await IsaDB2.set('foo', 'bar')
+    await IsaDB2.set('object', {name: 'Lucas', surname: 'Gomes'})
+    console.log(await IsaDB2.get('foo'))
+    IsaDB2.get('object').<span class="hljs-keyword">then</span>(data =&gt; {
+        console.log(data)
+    })
+    await IsaDB2.delete('foo')
+    console.log(await IsaDB2.get('foo'))
+    console.log(await IsaDB2.get('object.name')) //returns "Lucas"
+}
+
+main()
+</code></pre>
+
+</body>
+</html>
